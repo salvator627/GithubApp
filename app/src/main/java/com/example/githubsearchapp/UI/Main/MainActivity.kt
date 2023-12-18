@@ -1,5 +1,6 @@
 package com.example.githubsearchapp.UI.Main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
@@ -7,6 +8,8 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.githubsearchapp.Data.Model.User
+import com.example.githubsearchapp.UI.Detail.DetailUserActivity
 import com.example.githubsearchapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +25,16 @@ class MainActivity : AppCompatActivity() {
 
         adapter = MainAdapter()
         adapter.notifyDataSetChanged()
+
+        adapter.setOnItemClickCallback(object : MainAdapter.onItemClickCallback{
+            override fun onItemclick(data: User) {
+                Intent(this@MainActivity,DetailUserActivity::class.java).also {
+                    it.putExtra(DetailUserActivity.EXTRA_USERNAME,data.login)
+                    startActivity(it)
+                }
+            }
+
+        })
         viewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
 
         binding.apply {
