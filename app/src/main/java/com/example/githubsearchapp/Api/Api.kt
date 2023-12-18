@@ -16,7 +16,7 @@ interface Api {
         @Query("q") query: String
     ):Call<UserResponse>
 
-    @GET("user/{username}")
+    @GET("users/{username}")
     @Headers("Autorization: token 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")
     fun getDetailUser(
         @Path("username") username : String
