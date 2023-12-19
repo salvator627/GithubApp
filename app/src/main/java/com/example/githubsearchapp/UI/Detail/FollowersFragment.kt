@@ -1,10 +1,12 @@
 package com.example.githubsearchapp.UI.Detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.githubsearchapp.Data.Model.User
 import com.example.githubsearchapp.R
 import com.example.githubsearchapp.UI.Main.MainAdapter
 import com.example.githubsearchapp.databinding.FragmentFollowBinding
@@ -26,6 +28,15 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
         adapter = MainAdapter()
         adapter.notifyDataSetChanged()
 
+        adapter.setOnItemClickCallback(object : MainAdapter.onItemClickCallback{
+            override fun onItemclick(data: User) {
+                Intent(context,DetailUserActivity::class.java).also {
+                    it.putExtra(DetailUserActivity.EXTRA_USERNAME,data.login)
+                    startActivity(it)
+                }
+            }
+
+        })
         binding.apply {
             rvFollower.setHasFixedSize(true)
             rvFollower.layoutManager = LinearLayoutManager(activity)
