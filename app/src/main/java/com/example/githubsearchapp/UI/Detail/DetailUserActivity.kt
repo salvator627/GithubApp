@@ -37,8 +37,8 @@ class DetailUserActivity : AppCompatActivity() {
                 binding.apply {
                     tvName.text = it.name
                     tvUsername.text = it.login
-                    tvFollowers.text = "${it.followers} Followers"
-                    tvFollowing.text = "${it.following} Following"
+                    tvFollowers.text = it.followers.toString()
+                    tvFollowing.text = it.following.toString()
                     Glide.with(this@DetailUserActivity)
                         .load(it.avatar_url)
                         .transition(DrawableTransitionOptions.withCrossFade())
