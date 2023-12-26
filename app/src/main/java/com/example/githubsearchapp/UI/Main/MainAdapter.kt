@@ -32,6 +32,7 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.UserViewHolder>() {
                     .circleCrop()
                     .into(ivUser)
                 tvUser.text = user.login
+                tvNamefull.text = user.html_url
             }
         }
     }
